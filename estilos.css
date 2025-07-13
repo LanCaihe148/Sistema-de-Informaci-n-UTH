@@ -1,0 +1,15 @@
+
+  /* tipografía base */           
+  body, table {font-family: 'Segoe UI', Arial, sans-serif; font-size: 15px;}
+
+  /* tabla ocupando todo el ancho y colapsando bordes */
+  table {width: 100%; border-collapse: collapse; margin-top: 4px;}
+
+  /* celdas con padding, borde y texto centrado */
+  th, td {padding: 4px 8px; border: 1px solid #d0d0d0; text-align: center; white-space: nowrap;}
+
+  /* cabecera gris claro */
+  th {background: #f0f0f0;}
+
+  /* efecto zebra para filas pares */
+  tr:nth-child(even) {background: #fafafa;}
