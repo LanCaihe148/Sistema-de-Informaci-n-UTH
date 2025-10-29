@@ -4,11 +4,12 @@
 # Manejo de base de datos
 
 import tkinter as tk
-from tkinter import ttk, messagebox
+from tkinter import ttk, messagebox, Label
 import mysql.connector, subprocess, os
 from tkhtmlview import HTMLLabel
 from datetime import datetime
 from mariadb import *
+from PIL import Image, ImageTk
 
 
 def get_db_connection():
@@ -698,6 +699,8 @@ def SalirUsuarios(usuarios):
     usuarios.destroy()
 #----------------------------------------- termina usuario/funciones --------------------------------------
 
+
+#--------------------------------------- Empieza ventana de ventas --------------------------------------
 def Ventas():
     ventas = tk.Toplevel()
     ventas.config(width=600, height=400)
@@ -768,6 +771,7 @@ def Ventas():
     tree.pack(fill="both", expand=True)
     tree.bind('<<TreeviewSelect>>', lambda e: on_tree_select_ventas(e, tree, t2, t3, t4, t5, t6, t7))
 
+# ------------------------------------------- empieza la ventana de clientes ---------------------------------------
 
 def Clientes():
     clientes = tk.Toplevel()
@@ -833,6 +837,8 @@ def Clientes():
     t1 = tk.Text(clientes, width=60, height=1)
     t1.place(x=12,y=12)
 
+#--------------------------------------- empieza la ventana de Lentes -----------------------------------------
+
 def Lentes():
     lentes = tk.Toplevel()
     lentes.config(width=600, height=400)
@@ -897,6 +903,8 @@ def Lentes():
     lentes.title("Informacion de lentes")
     t1 = tk.Text(lentes, width=60, height=1)
     t1.place(x=12,y=12)
+
+# ------------------------------------------- empieza ventana de usuarios -----------------------------------
 
 def Usuarios():
     usuarios = tk.Toplevel()
@@ -1543,23 +1551,19 @@ def repVentasPorUsuario():
     GenVpU(rVentasPorUsuario)
 
 #------------------------------------------------ Termina Reportes de ventas por usuario ----------------------------------------
-# --------------------- Funciones de el menu de Archivo ---------------------- #
-
-# ------------------- Terminan funciones del menu de Archivo ---------------------- #
-
-# --------------------- Funciones de el menu de Reportes ---------------------- #
-
-
-# ------------------- Terminan funciones del menu de Reportes ---------------------- # 
 
 # ------------------- Ventana principal -------------------------- #
 root = tk.Tk()
 root.state('zoomed')
 
-
-
 root.title("Sistema de optica")
 archivo = tk.Menu(root)
+imagen = Image.open("./logooptica.png")  # Reemplaza con la ruta correcta
+imagen_tk = ImageTk.PhotoImage(imagen)
+label_logo = Label(root, image=imagen_tk)
+label_logo.pack()
+label_logo.pack(pady=200)
+label_logo.pack_configure(anchor="n")  # 'n' = norte (arriba)
 ini = tk.Menu(archivo, tearoff=100)
 rep = tk.Menu(archivo, tearoff=100)
 archivo.add_cascade(label="Archivo", menu=ini)
@@ -1578,4 +1582,3 @@ rep.add_command(label="Reporte de Ventas por Lente", command=repVentasPorLente)
 rep.add_command(label="Reporte de Ventas por Usuario", command=repVentasPorUsuario)
 root.config(menu=archivo)
 root.mainloop()
-

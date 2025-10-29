@@ -4,12 +4,12 @@
 # Manejo de base de datos
 
 import tkinter as tk
-from tkinter import ttk, messagebox
+from tkinter import ttk, messagebox, Label
 import mysql.connector, subprocess, os
 from tkhtmlview import HTMLLabel
 from datetime import datetime
 from mariadb import *
-
+from PIL import Image, ImageTk
 
 def get_db_connection():
     """Devuelve un objeto conexión a la BD MySQL (puerto 3307)."""
@@ -1119,6 +1119,12 @@ root.state('zoomed')
 
 root.title("Sistema de optica")
 archivo = tk.Menu(root)
+imagen = Image.open("./logooptica.png")  # Reemplaza con la ruta correcta
+imagen_tk = ImageTk.PhotoImage(imagen)
+label_logo = Label(root, image=imagen_tk)
+label_logo.pack()
+label_logo.pack(pady=200)
+label_logo.pack_configure(anchor="n")  # 'n' = norte (arriba)
 ini = tk.Menu(archivo, tearoff=100)
 rep = tk.Menu(archivo, tearoff=100)
 archivo.add_cascade(label="Archivo", menu=ini)
